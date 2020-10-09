@@ -1,0 +1,175 @@
+// 標準出力へのログ出力
+public class ClassName {														// ClassName = SourceName(.java)
+	public static void main(String[] args) {
+		System.out.println("out");
+	}
+}
+
+// 標準エラー出力へのログ出力
+public class ClassName {
+	public static void main(String[] args) {
+		System.err.println("error");
+	}
+}
+
+// 標準入力からの入力(Scanner)
+import java.util.*;																// import要
+
+public class ClassName {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String line = sc.next();												// next(),nextLine(),nextInt()
+        System.out.println(line);
+    }
+}
+
+// ファイルアクセス - 例外処理(throws)
+import java.io.*;																// import要
+import java.util.*;
+
+public class ClassName {
+    public static void main(String[] args) throws IOException {
+
+        File file = new File("articles.txt");
+
+        // ファイル書き込み
+        FileWriter filewriter = new FileWriter(file);
+        filewriter.write("Hello world\n");
+        filewriter.write("Hello Java\n");
+        filewriter.close();
+
+        // ファイル読み込み
+        Scanner scan = new Scanner(file);
+        while (scan.hasNextLine()) {
+            String line = scan.nextLine();
+            System.out.println(line);
+        }
+        scan.close();
+    }
+}
+
+// ファイルアクセス - 例外処理(try-catch)
+import java.io.*;
+import java.util.*;
+
+public class ClassName {
+    public static void main(String[] args) {
+
+        File file = new File("articles.txt");
+
+        // ファイル書き込み
+        try {
+            FileWriter filewriter = new FileWriter(file);
+            filewriter.write("Hello world\n");
+            filewriter.write("Hello Java\n");
+            filewriter.close();
+        } catch (IOException e) {
+            System.err.println("ファイル書き込みに失敗しました");
+            e.printStackTrace();
+        }
+
+        // ファイル読み込み
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                System.out.println(line);
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("ファイル読み込みに失敗しました");
+            e.printStackTrace();
+        }
+    }
+}
+
+// ファイルアクセス - try-with-resources
+import java.io.*;
+import java.util.*;
+
+public class ClassName {
+    public static void main(String[] args) {
+
+        File file = new File("articles.txt");
+
+        // ファイル書き込み
+        try (FileWriter filewriter = new FileWriter(file)) {
+            filewriter.write("Hello world\n");
+            filewriter.write("Hello Java\n");
+            // filewriter.close();
+        } catch (IOException e) {
+            System.err.println("ファイル書き込みに失敗しました");
+            e.printStackTrace();
+        }
+
+        // ファイル読み込み
+        file = new File("articles.txt");
+        try (Scanner scan = new Scanner(file)) {
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                System.out.println(line);
+            }
+            // scan.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("ファイル読み込みに失敗しました");
+            e.printStackTrace();
+        }
+    }
+}
+
+// forによるループ処理
+public class ClassName {
+    public static void main(String[] args) {
+        for(カウンタ変数を初期化; (実行・継続)判定条件式; カウンタ変数を更新) {
+             // 繰り返し処理
+        }
+    }
+}
+
+// 拡張for文で配列を出力する
+public class ClassName {
+    public static void main(String[] args) {
+        String[] team = {"勇者", "戦士", "魔法使い"};
+        for (int i = 0; i < team.length; i++) {
+            System.out.println(team[i]);
+        }
+    }
+}
+
+
+Readerからのファイル出力
+Writerによるファイルへの出力
+
+配列[][]
+String[] team = {"戦士", "忍者"};
+
+team = new String[2];
+team[0] = "戦士";
+team[1] = "忍者";
+
+System.out.println(team.length);
+
+String[] team = {"勇者", "戦士", "魔法使い", "忍者"};
+for (String member : team) {
+    System.out.println(member);
+}
+
+定義									String sArr[][][];
+										int iArr[][][];
+、追加、更新、削除、ループ
+配列ArrayList
+定義、追加、更新、削除、ループ
+
+連想配列
+
+
+ループ
+全般	for (i;i<10;1++) {
+		}
+
+配列に限定されるループ
+		for (int iInt : iArr){
+		}
+		for (String sStr : sArr){
+		}
+
